@@ -1,0 +1,53 @@
+$base = "C:\Users\amash\Desktop\PROJECT_6\AI-Powered Spam & Phishing Detection System"
+
+$login = '<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sign In - CyberShield AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="auth.css"/>
+</head>
+<body>
+<div class="auth-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="grid-overlay"></div></div>
+<div class="auth-wrapper">
+  <a href="index.html" class="auth-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to Home</a>
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="logo-icon"><svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 7v7c0 5.5 4.3 10.7 10 12 5.7-1.3 10-6.5 10-12V7L14 2z" fill="url(#sg2)" stroke="rgba(99,179,237,0.4)" stroke-width="0.5"/><path d="M10 14l3 3 5-5" stroke="#63b3ed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="sg2" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a365d"/><stop offset="100%" stop-color="#2d3748"/></linearGradient></defs></svg></div>
+      <span class="logo-text">CyberShield <span class="logo-ai">AI</span></span>
+    </div>
+    <div class="role-tabs">
+      <button class="role-tab active" data-role="user" onclick="switchRole(''user'',''login'')"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> User</button>
+      <button class="role-tab" data-role="admin" onclick="switchRole(''admin'',''login'')"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3.3 2.6 6.4 6 7.2 3.4-.8 6-3.9 6-7.2V4L8 1z" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Admin</button>
+    </div>
+    <div class="auth-header"><h1 id="formTitle">Welcome back</h1><p id="formSubtitle">Sign in to your CyberShield AI account.</p></div>
+    <div class="alert" id="alertBox"></div>
+
+    <form id="userLoginForm" novalidate>
+      <div class="form-group"><label for="u_username">Username</label><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><input type="text" id="u_username" placeholder="Your username" autocomplete="username"/></div><span class="field-error" id="u_usernameErr"></span></div>
+      <div class="form-group"><label for="u_email">Email Address</label><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4v8h12V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><input type="email" id="u_email" placeholder="you@example.com" autocomplete="email"/></div><span class="field-error" id="u_emailErr"></span></div>
+      <div class="form-group"><div class="label-row"><label for="u_password">Password</label><a href="#" class="forgot-link">Forgot password?</a></div><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><input type="password" id="u_password" placeholder="Your password" autocomplete="current-password"/><button type="button" class="toggle-pw" onclick="togglePw(''u_password'',this)" aria-label="Toggle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div><span class="field-error" id="u_passwordErr"></span></div>
+      <button type="submit" class="btn-auth"><span class="btn-text">Sign In</span><span class="btn-spinner"></span></button>
+    </form>
+
+    <form id="adminLoginForm" novalidate style="display:none">
+      <div class="admin-badge"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3.3 2.6 6.4 6 7.2 3.4-.8 6-3.9 6-7.2V4L8 1z" stroke="#f6ad55" stroke-width="1.3"/></svg> Admin Login</div>
+      <div class="form-group"><label for="a_name">Full Name</label><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><input type="text" id="a_name" placeholder="Your full name" autocomplete="off"/></div><span class="field-error" id="a_nameErr"></span></div>
+      <div class="form-group"><label for="a_email">Email Address</label><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4v8h12V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><input type="email" id="a_email" placeholder="admin@example.com" autocomplete="email"/></div><span class="field-error" id="a_emailErr"></span></div>
+      <div class="form-group"><div class="label-row"><label for="a_password">Password</label></div><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><input type="password" id="a_password" placeholder="Your password" autocomplete="current-password"/><button type="button" class="toggle-pw" onclick="togglePw(''a_password'',this)" aria-label="Toggle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div><span class="field-error" id="a_passwordErr"></span></div>
+      <div class="form-group"><label for="a_secret">Secret Code</label><div class="input-wrap"><svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3.3 2.6 6.4 6 7.2 3.4-.8 6-3.9 6-7.2V4L8 1z" stroke="currentColor" stroke-width="1.3"/></svg><input type="password" id="a_secret" placeholder="Enter admin secret code" autocomplete="off"/><button type="button" class="toggle-pw" onclick="togglePw(''a_secret'',this)" aria-label="Toggle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div><span class="field-error" id="a_secretErr"></span></div>
+      <button type="submit" class="btn-auth btn-admin"><span class="btn-text">Sign In as Admin</span><span class="btn-spinner"></span></button>
+    </form>
+
+    <p class="auth-switch">Don''t have an account? <a href="signup.html">Create one</a></p>
+  </div>
+</div>
+<script src="auth.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => initLogin());</script>
+</body>
+</html>'
+[System.IO.File]::WriteAllText("$base\login.html", $login)
+Write-Host "login.html OK:" (Get-Item "$base\login.html").Length
